@@ -1,26 +1,25 @@
 library(rethinking)
-# function to generate width data
-sim_height <- function(W, b, sd) {
-    U <- rnorm(length(W), 0, sd)
-    H <- b * W + U
-    return(H)
-}
+library(rethinking)
+data(Howell1)
 
-# Pretty bad. Because this is a uniform distribution
-W <- runif(200, 40, 100)
+d <- Howell1
+d2 <- d[ d$age >= 18 , ]
+# define the average weight, x-bar
+xbar <- mean(d2$weight)
+# fit model
+m4.3 <- quap(
+alist(height ~ dnorm( mu , sigma ) ,
+mu <- a + b*( weight - xbar ) ,
+a ~ dnorm( 178 , 20 ) ,
+b ~ dlnorm( 0 , 1 ) ,
+sigma ~ dunif( 0 , 50 )
+) ,
+data=d2 )
 
-H <- sim_height(W, 1, 10)
+post <- extract.samples( m4.3 )
+calc_height <- post$a + post$b * ( 46.95 - xbar )
+print(round(PI( calc_height , prob=0.89 ), 2))
+print(round(mean(calc_height), 2))
 
-# plot(H ~ W, col=2, lwd=3)
-dat <- list(W, H)
-ex1 <- quap(
-  alist(
-    H ~ dnorm(mu, sigma),
-    mu <- a + b*W,
-    a ~ dnorm(0, 2),
-    b ~ dnorm(0, 2),
-    sigma ~ dnorm(0, 2)
-  ),
-    data = dat
-)
-precis(ex1)
+#Print density of the height value vector
+#dens( calc_height , col=rangi2 , lwd=2 , xlab="mu|weight=50" )
