@@ -1,0 +1,15 @@
+ex1:
+    1:  expected height = 156.37, 89% inverval = 155.92, 156.81
+
+
+ex2:
+a)
+I got 352 rows?
+
+Using the precis() function we see that: 
+
+the average person is: 154.6 cm tall
+the standard deviation is: 5cm
+for every 1kg a person is 0.9cm taller. So 10kg is 9cm
+
+b)
