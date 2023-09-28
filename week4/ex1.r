@@ -16,3 +16,4 @@ w[wid] ~ dnorm(0,0.5),
 sigma ~ dexp(1)
 ), data=dat_list , chains=4 , cores=4 )
 
+plot(precis(m1 , 2))
