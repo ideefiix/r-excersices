@@ -1,0 +1,10 @@
+Investigate WAIC and AIC
+
+AIC measures the average deviation for out of sample data.
+A high deviation means that the model is overfitting to the training data
+
+AIC assumes flat priors and gaussian pd
+
+
+WAIC measures the K-L divergence for out-of-sample
+
