@@ -7,3 +7,5 @@ file_path <- "C:\\Users\\flind\\Desktop\\empirical-course\\r-excersices\\assignm
 
 # Call the download.file() function, passing in the URL and file name/location as arguments
 download.file(url, paste(file_path, file_name, sep = ""), mode = "wb")
+
+d <- read.csv(file = "C:\\Users\\flind\\Desktop\\empirical-course\\r-excersices\\assignment\\assignmentdata.csv", sep = ";")
